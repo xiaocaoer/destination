@@ -1,33 +1,31 @@
 <template>
   <div id="app">
-    <span class='iconfont icon-qingkong1'></span>
-    <div class="box"></div>
+    {{test}}
     <router-view></router-view>
-    <yan-guide></yan-guide>
+    <yan-guide v-show="$route.meta.showGuide"></yan-guide>
   </div>
   
-</template>
+</template> 
 
 <script>
 import http from '@/http'
-
+import {mapState} from 'vuex'
 import guide from 'components/yan-guide/yan-guide'
 export default {
   name: 'App',
+  computed:{
+      ...mapState(['test'])
+  },
   components: {
    "yan-guide":guide,
   },
- async mounted(){
-    let data = await http.wangi.getIndex()
-    console.log(data)
+  mounted(){
   }
 }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-.box
-  width 200px
-  height 200px 
-  background red 
-  margin 0 auto
+#app
+  height 100%
+  width 100%
 </style>

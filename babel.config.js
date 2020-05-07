@@ -2,7 +2,7 @@ module.exports = {
   presets: [
     '@vue/cli-plugin-babel/preset'
   ],
-  plugins: [
+  plugins: [//配置vant
     ['import', {
       libraryName: 'vant',
       libraryDirectory: 'es',

@@ -3,8 +3,8 @@ export default {
   name: "wangi",
   api: {
     // 配置代理后请求,由静态资源服务器代发给自己搭建的服务器
-    getIndex: {//首页
-      url: "/index",
+    getIndexData: {//首页
+      url: "/indexData",
       method: "get",
       toast: true,
       corsUrl: "/4001api"
