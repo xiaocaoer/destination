@@ -1,5 +1,5 @@
 <template>
-
+  <div>值得买</div>
 </template>
 
 <script>

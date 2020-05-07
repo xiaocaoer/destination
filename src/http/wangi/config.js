@@ -7,25 +7,25 @@ export default {
       url: "/index",
       method: "get",
       toast: true,
-      corsUrl: "/4000api"
+      corsUrl: "/4001api"
     },   
     getIndexCateModule: {//首页导航
       url: "/indexCateModule",
       method: "get",
       toast: true,
-      corsUrl: "/4000api"
+      corsUrl: "/4001api"
     },    
     getCateNavDatas: {//分类页左侧导航数据
       url: "/cateNavDatas",
       method: "get",
       toast: true,
-      corsUrl: "/4000api"
+      corsUrl: "/4001api"
     },   
      getCateLists: {///分类页右侧内容数据
       url: "/cateLists",
       method: "get",
       toast: true,
-      corsUrl: "/4000api"
+      corsUrl: "/4001api"
     },
     // 配置代理后请求,由静态资源服务器代发给网易云后台
     getNavWap: {//值得买nav

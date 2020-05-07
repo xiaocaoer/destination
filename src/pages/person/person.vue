@@ -1,12 +1,10 @@
 <template>
-  <div>
-      这是一个悲伤的故事
-  </div>
+  <div>个人</div>
 </template>
 
 <script>
 export default {
-  name:'test',
+
 }
 </script>
 

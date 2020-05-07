@@ -27,11 +27,11 @@ module.exports={
           //再转发请求是,地址中没有了/4000api
       }
       },
-      '/4000api': {
-        target: 'http://localhost:4000',//服务器地址
+      '/4001api': {
+        target: 'http://localhost:4001',//服务器地址
         changeOrigin: true,
         pathRewrite:{
-          "^/4000api":""
+          "^/4001api":""
       }
       },
 

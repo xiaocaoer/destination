@@ -10,8 +10,8 @@ Vue.prototype.$http = http
 import router from '@/router'
 //引入仓库
 import store from '@/store'
-//引入适配插件
-// import 'lib-flexible/flexible.js'
+//适配插件
+import 'lib-flexible/flexible'
 
 
 
