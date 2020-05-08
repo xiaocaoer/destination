@@ -11,5 +11,5 @@ export default[
   {path:'/buy',component:buy,meta:{showGuide:true}},
   {path:'/cart',component:cart,meta:{showGuide:true}},
   {path:'/person',component:person,meta:{showGuide:true}},
-  {path:"/",redirect:"home"}//重定向
+  {path:"/",redirect:"category"}//重定向
 ]

@@ -1,5 +1,10 @@
 import http from "@/http"
-import {GETINDEXDATA,GETINDEXNAV} from './mutation_types'
+import {
+  GETINDEXDATA,
+  GETINDEXNAV,
+  GETCATENAV,
+  GETCATEDATA,
+} from './mutation_types'
 
 const ok=0
 export default {
@@ -13,6 +18,18 @@ export default {
     const {code,data} = await http.wangi.getIndexCateModule();
     if(code===ok){
       commit(GETINDEXNAV,data)
+    }
+  },
+  async [GETCATENAV]({commit}){ //获取分类页导航
+    const {code,data} = await http.wangi.getCateNavDatas();
+    if(code===ok){
+      commit(GETCATENAV,data)
+    }
+  },
+  async [GETCATEDATA]({commit}){ //获取分类页数据
+    const {code,data} = await http.wangi.getCateLists();
+    if(code===ok){
+      commit(GETCATEDATA,data)
     }
   },
 }

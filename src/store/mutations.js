@@ -1,4 +1,9 @@
-import {GETINDEXDATA,GETINDEXNAV} from './mutation_types'
+import {
+  GETINDEXDATA,
+  GETINDEXNAV,
+  GETCATENAV,
+  GETCATEDATA,
+} from './mutation_types'
 
 export default{
   [GETINDEXDATA](state,indexData){
@@ -6,5 +11,12 @@ export default{
   },
   [GETINDEXNAV](state,indexNav){
     state.indexNav=indexNav
-  }
+  },
+  [GETCATENAV](state,cateNav){
+    state.cateNav=cateNav
+  },
+  [GETCATEDATA](state,cateData){
+    state.cateData=cateData
+  },
+
 }
