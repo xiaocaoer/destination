@@ -121,6 +121,7 @@ export default {
           background-color #ededed
           text-align center
           .iconfont 
+            font-size 28px //内置的icon有自己的大小，如果使用内置的是不会进行适配的
             margin-right 10px
         .login
           width 72px

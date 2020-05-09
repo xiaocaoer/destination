@@ -37,6 +37,7 @@ export default {
   // 注意:网易云请求回来的数据中code是个字符串,要转为number才可以和ok相等存入仓库
   async [GETNAVWRAP]({commit}){ //获取值得买宫格导航
     const {code,data} = await http.wangi.getNavWap();
+    console.log(code,data)
     if((code*1)===ok){
       commit(GETNAVWRAP,data)
     }
