@@ -8,7 +8,7 @@ import {
   GETRECMANUAL,
 } from './mutation_types'
 
-const ok=0
+const ok=200
 export default {
   async [GETINDEXDATA]({commit}){ //获取主页信息
     const {code,data} = await http.wangi.getIndexData();
@@ -34,15 +34,16 @@ export default {
       commit(GETCATEDATA,data)
     }
   },
+  // 注意:网易云请求回来的数据中code是个字符串,要转为number才可以和ok相等存入仓库
   async [GETNAVWRAP]({commit}){ //获取值得买宫格导航
     const {code,data} = await http.wangi.getNavWap();
-    if(code===ok){
+    if((code*1)===ok){
       commit(GETNAVWRAP,data)
     }
   },
   async [GETRECMANUAL]({commit}){ //获取瀑布流数据
     const {code,data} = await http.wangi.getRecManual();
-    if(code===ok){
+    if((code*1)===ok){
       commit(GETRECMANUAL,data)
     }
   },

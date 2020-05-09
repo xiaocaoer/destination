@@ -22,9 +22,11 @@ export default{
   },
   //值得买页面
   [GETNAVWRAP](state,navWrap){
+    console.log('111')
     state.navWrap=navWrap
   },
   [GETRECMANUAL](state,recManual){
+    console.log('111')
     state.recManual=recManual
   },
 

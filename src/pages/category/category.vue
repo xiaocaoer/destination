@@ -146,6 +146,7 @@ export default {
       padding 0px 30px 21px 20px
       margin-top 30px
       background #fff
+      overflow hidden
       .itemDetail
         height 1150px
         .topImg 

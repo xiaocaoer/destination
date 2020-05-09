@@ -1,11 +1,11 @@
 <template>
   <div class="headerContainer">
     <div class="top">
-      <van-icon  class="home" name="wap-home-o" size="24" @click="goto('/home')" />
+      <van-icon size="24" name="wap-home-o" @click="goto('/home')" />
       <h2>{{headerTitle}}</h2>
       <div class="rTop">
-        <van-icon class="icon" name="search" size="24" @click="goto('/search')" />
-        <van-icon class="icon" name="shopping-cart-o"  size="24" @click="goto('/cart')" />
+        <van-icon class="searchIcon" size="24" name="search"  @click="goto('/search')" />
+        <van-icon size="24" name="shopping-cart-o"   @click="goto('/cart')" />
       </div>
     </div>
 </div>
@@ -19,7 +19,7 @@ Vue.use(GridItem);
 Vue.use(Icon);
 
 export default {
-  name:"header",
+  name:"start",//注意这里是组件名,vue会读取,不能跟h5标签同名
   props:{
     headerTitle:String
   },
@@ -38,6 +38,7 @@ export default {
     padding 0 24px 0
     background #fafafa
     display flex
+    align-items center
     justify-content space-between
     .home
       line-height 100px
@@ -45,12 +46,10 @@ export default {
       color #000
       font-size 36px
       line-height 100px
-      padding-left 36px
+      padding-left 46px
     .rTop
-      .icon
-        line-height 100px
-        width 60px
-        box-sizing border-box
-          
+      .searchIcon
+        margin-right 20px
+
 
 </style>

@@ -4,5 +4,5 @@ export default{
   cateNav:{},//分类页
   cateData:{},
   navWap:[],//值得买页面导航
-  RecManual:{}//值得买页面瀑布流数据
+  recManual:{}//值得买页面瀑布流数据
 }

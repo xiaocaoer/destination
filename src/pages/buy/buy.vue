@@ -1,19 +1,16 @@
 <template>
 <div class="buyContainer">
   <!-- 头部 -->
-  <Yan-Header headerTitle="值得买"></Yan-Header>
+  <yan-start headerTitle="值得买"></yan-start>
 
   <div class="contentContainer">
     <div class="content">
       <!-- 上方宫格区域 -->
       <div class="bg">
-        <van-grid>
-          <van-grid-item icon="photo-o" text="文字" />
-          <van-grid-item icon="photo-o" text="文字" />
-          <van-grid-item icon="photo-o" text="文字" />
-          <van-grid-item icon="photo-o" text="文字" />
+        <van-grid v-if="navList">
+          <van-grid-item :icon="navItem.picUrl" :text="navItem.mainTitle" v-for="(navItem) in navList" :key="navItem.id"/>
         </van-grid>
-      </div>de
+      </div>
       <!-- 瀑布流区域 -->
 
     </div>
@@ -27,7 +24,7 @@ import { Grid, GridItem ,Icon} from 'vant';
 Vue.use(Grid);
 Vue.use(GridItem);
 Vue.use(Icon);
-import header from 'components/yan-headerc/yan-headerc.vue'
+import start from 'components/yan-start/yan-start.vue'
 import {GETNAVWRAP,GETRECMANUAL} from 'store/mutation_types'
 import {mapState,mapActions} from 'vuex'
 
@@ -35,11 +32,16 @@ import {mapState,mapActions} from 'vuex'
 export default {
   name:"buy",
   components:{
-    "Yan-Header":header
+    "yan-start":start
   },
   computed:{
-    ...mapState(['navWap']) ,
+    ...mapState(['navWrap']) ,
     ...mapState(['recManual']),
+    navList(){
+      if(this.navWrap){
+        return this.navWrap.navList
+      }
+    }
   },
   methods:{
     ...mapActions([GETNAVWRAP]),
@@ -51,18 +53,22 @@ export default {
   async mounted(){
     await this[GETNAVWRAP]()//获取导航
     await this[GETRECMANUAL]()//获取瀑布流
+    console.log(this.navWrap)
   }
 }
 </script>
 
 <style  lang="stylus">
 @import '../../common/stylus/fun.styl';
+// 这里使用stylus函数 add利用add实现375页面看见多少写多少
 .buyContainer
   .contentContainer
     .content
       .bg
-        width add(20, 10px)
+        width add(375)
+        height add(343)
         background-image url(./topic_bg.png)
+        background-size cover //,缩放背景图,让背景图铺满背景盒子的整个区域即可
 
 
 </style>

@@ -12,7 +12,7 @@
     "better-scroll": "^1.15.2",
     "core-js": "^3.6.4",
     "lib-flexible": "^0.3.2",
-    "postcss-px2rem": "^0.3.0",
+    "postcss-px2rem-exclude": "0.0.6",
     "px2rem-loader": "^0.1.9",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
