@@ -2,7 +2,7 @@
   <div class="hotDemo">
     <div class="title">类目热销榜</div>
     <div class="hotContent">
-      <ul class="topB">
+      <ul class="topB" v-if="indexData.categoryHotSellModule">
         <li class="topContent" v-for="(cateItem,index) in indexData.categoryHotSellModule.categoryList" :key="index">
           <span class="text">{{cateItem.categoryName}}</span>
           <img :src="cateItem.showPicUrl" alt="">

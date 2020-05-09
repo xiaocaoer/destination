@@ -3,6 +3,8 @@ import {
   GETINDEXNAV,
   GETCATENAV,
   GETCATEDATA,
+  GETNAVWRAP,
+  GETRECMANUAL,
 } from './mutation_types'
 
 export default{
@@ -17,6 +19,13 @@ export default{
   },
   [GETCATEDATA](state,cateData){
     state.cateData=cateData
+  },
+  //值得买页面
+  [GETNAVWRAP](state,navWrap){
+    state.navWrap=navWrap
+  },
+  [GETRECMANUAL](state,recManual){
+    state.recManual=recManual
   },
 
 }

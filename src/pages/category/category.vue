@@ -10,21 +10,23 @@
 
     <!-- 下方内容 -->
     <div class="categoryContainer">
+      <!-- 导航 -->
       <div class="lContainer" ref="lContainer">
-        <ul class="navList">
-          <li class="navItem" @click="changeIndex(index)" v-for="(navItem,index) in cateNav.categoryL1List" :key="navItem.id" >
-            <a :class="{active:navIndex===index}" href="javascript:;">{{navItem.name}}</a>
+        <ul class="navList" v-if="cateNav">
+          <li class="navItem" @click="changeIndex(navItem.id)" v-for="(navItem) in cateNav.categoryL1List" :key="navItem.id" >
+            <a :class="{active:navId===navItem.id}" href="javascript:;">{{navItem.name}}</a>
           </li>          
         </ul>
       </div>
-      <div class="rContainer">
+      <!-- 右侧内容 -->
+      <div class="rContainer" ref="rContainer">
         <div class="itemDetail">
-          <img src="https://yanxuan.nosdn.127.net/a41ddf5b8d7921d5d09987022dd71cac.jpg?quality=75&type=webp&imageView&thumbnail=0x196" alt="">
-          <ul class="itemList">
-            <li class="itemLi">
-              <img src="https://yanxuan.nosdn.127.net/f68c16727409880d6b7717873c4f2597.png?quality=75&type=webp&imageView&thumbnail=144x144" alt="">
-              <span class="text">员工精选</span>
-            </li>
+          <img class="topImg" src="https://yanxuan.nosdn.127.net/a41ddf5b8d7921d5d09987022dd71cac.jpg?quality=75&type=webp&imageView&thumbnail=0x196" alt="">
+          <ul class="itemList" v-if="showlist "  >
+            <li class="itemLi" v-for="(item) in showlist.categoryList" :key="item.id">
+              <img :src="item.bannerUrl" alt="">
+              <span class="text">{{item.name}}</span>
+            </li>          
           </ul>
         </div>
       </div>
@@ -42,23 +44,42 @@ export default {
   name:"category",
   data(){
     return{
-      navIndex:0
+      navId:0 //当前选中的导航id
     }
   },
   computed:{
-    ...mapState(['cateNav'])
+    ...mapState(['cateNav']),
+    ...mapState(['cateData']),
+    //根据导航的id,找到要显示的数据
+    showlist(){
+      //遍历cateData数组,找到id是navId的那一项
+      if(this.cateData instanceof Array){ //这边可能是因为数据转绑和数据劫持的原因,这里读到的cateData可能是个对象
+        return this.cateData.find((item,index) => {
+            return item.id===this.navId
+        })
+      }
+    }
+  },
+  watch:{
+    cateNav(){//cateNav计算属性初始化之前将第一个导航的id存储起来
+      if(this.cateNav){
+        // console.log(this.cateNav.categoryL1List[0].id) 
+        this.navId=this.cateNav.categoryL1List[0].id
+      }
+    }
   },
   methods:{
     ...mapActions([GETCATENAV]),
     ...mapActions([GETCATEDATA]),
     //点击不同的导航
-    changeIndex(changeIndex){
-      this.navIndex=changeIndex
+    changeIndex(changeId){
+      this.navId=changeId
     },
-    //导航滑屏初始化
+    //导航及右侧内容滑屏初始化
     initScroll(){
       this.$nextTick(() => { 
-            this.scroll = new BScroll(this.$refs.lContainer, {click: true}) 
+            this.scrollNav = new BScroll(this.$refs.lContainer, {click: true}) 
+            this.scroll = new BScroll(this.$refs.rContainer, {click: true}) 
         }) 
     },
   },
@@ -122,7 +143,36 @@ export default {
                 background #AB2B2B
     .rContainer
       width 528px
-      padding 30px 30px 21px 20px
-      background #333
+      padding 0px 30px 21px 20px
+      margin-top 30px
+      background #fff
+      .itemDetail
+        height 1150px
+        .topImg 
+          width 528px
+          height 192px
+        .itemList
+          display flex
+          flex-wrap wrap
+          .itemLi
+            display flex
+            flex-direction column
+            // justify-content center
+            align-items center
+            width 144px
+            height 216px
+            margin-right 32px
+            vertical-align top
+            img 
+              position relative
+              top 0
+              left 0
+              width 144px
+              height 144px
+            .text
+              text-align center
+              font-size 24px
+              line-height 48px
+
 
 </style>

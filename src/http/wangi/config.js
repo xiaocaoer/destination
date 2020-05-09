@@ -34,6 +34,13 @@ export default {
       toast: true,
       corsUrl: "/163api" 
     },
+    // 值得买页面瀑布流数据/topic/v1/find/recManual.json
+    getRecManual: {//值得买nav
+      url: "/topic/v1/know/navWap.json",
+      method: "get",
+      toast: true,
+      corsUrl: "/163api" 
+    },
 
   },
 
