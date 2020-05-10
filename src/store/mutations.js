@@ -22,7 +22,6 @@ export default{
   },
   //值得买页面
   [GETNAVWRAP](state,navWrap){
-    console.log(navWrap,'####')
     state.navWrap=navWrap
   },
   [GETRECMANUAL](state,recManual){

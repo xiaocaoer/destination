@@ -42,6 +42,15 @@ export default {
       corsUrl: "/163api" 
     },
 
+    //值得买页面瀑布流动态数据
+    getRecAuto:{
+      url: "topic/v1/find/recAuto.json",
+      method: "get",
+      // data:{page:1,size:5},
+      toast: true,
+      corsUrl: "/163api" 
+    }
+
   },
 
 }

@@ -32,7 +32,6 @@ export default (axios,config={})=>{
         transformData =  Object.assign(apiData, data);
       }
 
-
       let body = "";
       
       //为跨域的请求拼接URL

@@ -12,7 +12,9 @@ import router from '@/router'
 import store from '@/store'
 //适配插件
 import 'lib-flexible/flexible'
-
+//瀑布流布局
+import waterfall from 'vue-waterfall2'
+Vue.use(waterfall)
 
 
 new Vue({
