@@ -39,7 +39,7 @@
 
                 style="align-content: center;"
               >
-               <div class="cell-item"  v-for="(item,index) in waterList" :key="index"> 
+               <div class="cell-item"  v-for="(item,index) in waterFallList" :key="index"> 
                     <img :src="item.picUrl" alt="加载错误"  /> 
                     <div class="item-body">
                         <div class="item-desc">{{item.title}} </div>
@@ -98,9 +98,11 @@ export default {
   name: "buy",
   data(){
     return{
-      waterFallList:[], //瀑布流数据,
-      autoList:[],//动态瀑布流数据 page1 2 
-      waterList:[],//1+2
+      waterFallList:[], //瀑布流数据,表示第一次/上一次请求回来的数据
+      autoList:[],//动态瀑布流数据 page1 2  最新发请求回来的数据
+      // waterList:[],//1+2
+      page:1, //瀑布流数据页数
+      size:2,//长度
     }
   },
   components: {
@@ -138,24 +140,16 @@ export default {
         });
       });
     },
-    //内容区域滑屏
-    recScroll(){
-      this.$nextTick(() => { 
-            this.scrollNav = new BScroll(this.$refs.contentContainer, {click: true}) 
-        }) 
-    },
     //第一次瀑布流数据整理
     waterfall(){
       //recManual数组中每一项是个对象,拿到对象中的topics属性,值为数组,将其解包,添加到自己waterfallList上
       let result=[]
-      console.log(this.recManual,'1521111111111');
+      // console.log(this.recManual,'1521111111111');
       this.recManual.forEach((item,index) => {
         result.push(...item.topics)
       })
-      console.log(result,'@@@@@@@@@@@@@@@@@@@@@@@@@@');
       
      this.waterFallList = result
-     console.log( this.waterFallList,'########');
      
     },
     //瀑布流需要
@@ -164,7 +158,7 @@ export default {
     },
     //发请求获取第一页的动态数据,将动态数据存储在autoList中
     async getRecAuto(){
-      const {code,data} = await http.wangi.getRecAuto({page:1,size:2});
+      const {code,data} = await http.wangi.getRecAuto({page:this.page,size:this.size});
       if((code*1)===200){
         let rawResult =data.result
         // console.log(rawResult)
@@ -174,13 +168,36 @@ export default {
           item.topics.forEach((secItem,index) => {
             this.autoList.push(secItem)
           })
-        })
-        console.log(this.waterFallList,'1111111111111');
-        console.log(this.autoList,'222222');
-        
-        this.waterList = [...this.waterFallList, ...this.autoList]
+        })   
+        // this.waterList = [...this.waterFallList, ...this.autoList]
+        this.waterFallList = [...this.waterFallList, ...this.autoList]
       }
-    },   
+    },  
+        //内容区域滑屏
+    recScroll(){
+      this.$nextTick(() => { 
+        console.log(this,'@@@@@@@');
+            this.scroll = new BScroll(this.$refs.contentContainer, {
+              click: true, 
+              pullUpLoad: { //事件回调定义再methods中
+              threshold: -30 // 当上拉距离超过30px时触发 pullingUp 事件,发请求获取下一页数据
+                }
+            }) 
+            //滑动的底部上拉加载更多，滑动到底部时这个事件就会被出发
+            this.scroll.on('pullingUp',()=>{
+                  //当滚动到底部的时候调用。
+                    console.log("底部到了")
+                    this.page += this.page
+                    this.getRecAuto({page:this.page,size:this.size})//发请求获取下一页数据
+                   
+                    this.scroll.finishPullUp() //告诉better-scroll数据已经加载完毕,不写这个,只能发一次这种请求
+                    this.scroll.refresh()
+
+                    // this.$emit('pullingUp')
+
+            })
+        }) 
+    }, 
   },
   async mounted() {
     await this[GETNAVWRAP](); //获取导航
@@ -193,7 +210,8 @@ export default {
     this.recScroll()//内容区滑屏
     this.renderSwiper() //宫格轮播
     
-  
+    
+
   }
 }
 </script>

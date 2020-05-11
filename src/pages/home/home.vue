@@ -5,7 +5,7 @@
       <div class="headerContainer">
         <header>
           <h1><img src="./logo.png" alt="logo"></h1>
-          <div class="search" >
+          <div class="search" @click="goto('search')" >
             <i class="iconfont icon-sousuo"></i>
             <span>搜索商品,共25372款产品</span>
           </div>
@@ -61,6 +61,9 @@ export default {
       //单击导航
       changeNav(TargetIndex){
         this.navIndex=TargetIndex
+      },
+      goto(path){
+       this.$router.replace(path)
       },
       //导航滑屏初始化
       initScroll(){

@@ -44,13 +44,26 @@ export default {
 
     //值得买页面瀑布流动态数据
     getRecAuto:{
-      url: "topic/v1/find/recAuto.json",
+      url: "/topic/v1/find/recAuto.json",
       method: "get",
-      // data:{page:1,size:5},
+      toast: true,
+      corsUrl: "/163api" 
+    },
+    //搜索页面原始数据
+    getSearchRawData:{
+      url: "/xhr/search/init.json",
+      method: "get",
+      toast: true,
+      corsUrl: "/163api" 
+    },
+    // /xhr/search/searchAutoComplete.json
+    //搜索关键字
+    getSearchWord:{
+      url: "/xhr/search/searchAutoComplete.json",
+      method: "get",
       toast: true,
       corsUrl: "/163api" 
     }
-
   },
 
 }
