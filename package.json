@@ -16,7 +16,7 @@
     "px2rem-loader": "^0.1.9",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
-    "swiper": "^5.3.8",
+    "swiper": "^6.5.1",
     "vant": "^2.8.0",
     "vue": "^2.6.11",
     "vue-flex-waterfall": "^1.0.5",
